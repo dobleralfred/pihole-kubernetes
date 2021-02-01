@@ -156,6 +156,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             privileged: {{ .Values.privileged }}
+          {{- if .Values.netadmin }}
+            capabilities:
+              add:
+              - NET_ADMIN
+          {{- end }}
           ports:
           - containerPort: {{ .Values.webHttp }}
             name: http
